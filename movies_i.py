@@ -25,7 +25,7 @@ m2 = collection2.find({"year.$numberInt": "1916"}, {"_id": 0, "title": 1, "imdb.
 # searched only those values whose imdb is greater than 1000
 
 m3 = collection2.find(
-    {"$and": [{"imdb.votes.$numberInt": {"$gt": "1000"}}, {"$where": "this.imdb.votes.$numberInt.length > 4"}]},
+    {"$and": [{"imdb.votes.$numberInt": {"$gt": "1000"}}, {"$where": "this.imdb.votes.$numberInt.length >= 4"}]},
     {
         "_id": 0, "title": 1,
         "imdb.votes": 1,
