@@ -41,3 +41,77 @@ for id1 in mov_id:
     print(list(val))
 
 
+    
+    
+    
+    
+    
+# iii Given a year find the total number of comments created each month in that year
+
+    
+# converted object date type into date type
+
+newMov = collection1.aggregate([
+    {
+        "$project": {
+            "_id": 1,
+            "date": 1
+        }
+    }
+])
+
+new_mov = list(newMov)
+
+i_d = []
+date_list = []
+
+# use the list to hold the id and numberlong date format
+
+for i in new_mov:
+    oid_str = i['_id']
+    oid2 = ObjectId(oid_str)
+    i_d.append(oid2)
+    date_list.append(bson.Int64(i['date']['$date']['$numberLong']))
+
+# for i in range(0, len(i_d)):
+#     print(i_d[i], date_list[i])
+
+# Updated the comments with new dob format to make query easily
+
+# for i in range(0, len(i_d)):
+#     collection1.update_one({"_id": i_d[i]},
+#                           {"$set": {"dob": date_list[i]}})
+
+
+
+
+# converted numberlong format into date format to seperate month and year
+
+# group by month to get the number of user each month
+
+month_num_comments = collection1.aggregate([
+  {
+    "$project": {
+      "_id": 0,
+      "b_date": {"$convert": {"input": "$dob", "to": "date"}},
+      "name": 1,
+      "email": 1
+    }
+  },
+  {
+    "$project": {
+      "name": 1,
+      "email": 1,
+      "b_date": 1,
+      "year": {"$year": "$b_date"},
+      "month": {"$month": "$b_date"}
+    }
+  },
+  {
+    "$match": {"year": 1998},
+  },
+  {"$group": {"_id": {"month": "$month"}, "numUser": {"$sum": 1}}}  
+])
+
+print(list(month_num_comments))
+
