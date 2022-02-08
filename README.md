@@ -43,7 +43,8 @@ Q3. with highest IMDB rating with number of votes > 1000
 
 Ans: searched only those values whose imdb is greater than 1000
 [Code](https://github.com/Shubham-Sigmoid044/MongoDB_Assignment/blob/b91d7916784a71a1655688b6bed82f75ea4786c5/movies_i.py#L27)
-<img width="1360" alt="image" src="https://user-images.githubusercontent.com/98617328/153014751-6dbdedc3-b43a-4078-b015-560c0b511d4a.png">
+<img width="1369" alt="image" src="https://user-images.githubusercontent.com/98617328/153025470-2be5f170-cfa0-452b-80cf-a70953e4f0f0.png">
+
 
 
 Q4. with title matching a given pattern sorted by highest tomatoes ratings
